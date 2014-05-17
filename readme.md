@@ -7,6 +7,8 @@ This library adds support for Azure Queue Storage to be used together
 with HangFire.SqlServer job storage implementation. All job data is saved
 to SQL Azure database, but job queues use Queue Storage.
 
+**Note:** This is pre-alpha version, that has not been ever tested. Please, use it with care :)
+
 Installation
 -------------
 
