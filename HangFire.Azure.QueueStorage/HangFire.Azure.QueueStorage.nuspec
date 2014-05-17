@@ -14,6 +14,7 @@
     <tags>Azure QueueStorage Async Background Fire-And-Forget Jobs Tasks Workers Threading Queue</tags>
 	<dependencies>
 		<dependency id="HangFire.SqlServer" version="0.8.1" />
+		<dependency id="WindowsAzure.Storage" version="4.0.0" />
 	</dependencies>
   </metadata>
 </package>
