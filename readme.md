@@ -1,6 +1,8 @@
 HangFire.Azure.QueueStorage
 ============================
 
+<a href="https://ci.appveyor.com/project/odinserj/hangfire-azure-queuestorage"><img title="Build status" width="113" src="https://ci.appveyor.com/api/projects/status/kog7v4hd4a5o5s8d?retina=true" /></a>
+
 This library adds support for Azure Queue Storage to be used together
 with HangFire.SqlServer job storage implementation. All job data is saved
 to SQL Azure database, but job queues use Queue Storage.
