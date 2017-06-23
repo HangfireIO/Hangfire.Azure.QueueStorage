@@ -1,12 +1,13 @@
 ﻿// Copyright (c) 2014 Sergey Odinokov
 // See the file license.txt for copying permission.
 
+using Hangfire.SqlServer;
+using Hangfire.Storage;
+using Microsoft.WindowsAzure.Storage.Queue;
 using System;
+using System.Data;
 using System.Linq;
 using System.Threading;
-using HangFire.SqlServer;
-using HangFire.Storage;
-using Microsoft.WindowsAzure.Storage.Queue;
 
 namespace HangFire.Azure.QueueStorage
 {
@@ -56,6 +57,14 @@ namespace HangFire.Azure.QueueStorage
         }
 
         public void Enqueue(string queue, string jobId)
+        {
+            var cloudQueue = _client.GetQueueReference(queue);
+            var message = new CloudQueueMessage(jobId);
+
+            cloudQueue.AddMessage(message);
+        }
+
+        public void Enqueue(IDbConnection connection, string queue, string jobId)
         {
             var cloudQueue = _client.GetQueueReference(queue);
             var message = new CloudQueueMessage(jobId);
