@@ -1,9 +1,9 @@
 ﻿// Copyright (c) 2014 Sergey Odinokov
 // See the file license.txt for copying permission.
 
-using System;
-using HangFire.Storage;
+using Hangfire.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
+using System;
 
 namespace HangFire.Azure.QueueStorage
 {
@@ -32,6 +32,12 @@ namespace HangFire.Azure.QueueStorage
 
         void IDisposable.Dispose()
         {
+        }
+
+        public void Requeue()
+        {
+            _queue.DeleteMessage(_message);
+            _queue.AddMessage(_message);
         }
     }
 }

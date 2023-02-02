@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2014 Sergey Odinokov
 // See the file license.txt for copying permission.
 
-using System;
-using HangFire.SqlServer;
-using HangFire.States;
+using Hangfire.SqlServer;
+using Hangfire.States;
 using Microsoft.WindowsAzure.Storage.Queue;
+using System;
 
 namespace HangFire.Azure.QueueStorage
 {

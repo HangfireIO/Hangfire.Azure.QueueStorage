@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2014 Sergey Odinokov
 // See the file license.txt for copying permission.
 
+using Hangfire.SqlServer;
+using Microsoft.WindowsAzure.Storage.Queue;
 using System;
 using System.Data;
-using HangFire.SqlServer;
-using Microsoft.WindowsAzure.Storage.Queue;
 
 namespace HangFire.Azure.QueueStorage
 {
@@ -15,8 +15,8 @@ namespace HangFire.Azure.QueueStorage
         private readonly string[] _queues;
 
         public QueueStorageJobQueueProvider(
-            CloudQueueClient client, 
-            QueueStorageOptions options, 
+            CloudQueueClient client,
+            QueueStorageOptions options,
             string[] queues)
         {
             if (client == null) throw new ArgumentNullException("client");
@@ -30,9 +30,19 @@ namespace HangFire.Azure.QueueStorage
             CreateQueuesIfNotExists();
         }
 
+        public IPersistentJobQueue GetJobQueue()
+        {
+            return new QueueStorageJobQueue(_client, _options);
+        }
+
         public IPersistentJobQueue GetJobQueue(IDbConnection connection)
         {
             return new QueueStorageJobQueue(_client, _options);
+        }
+
+        public IPersistentJobQueueMonitoringApi GetJobQueueMonitoringApi()
+        {
+            return new QueueStorageMonitoringApi(_client, _queues);
         }
 
         public IPersistentJobQueueMonitoringApi GetJobQueueMonitoringApi(IDbConnection connection)
